@@ -1,0 +1,91 @@
+
+{% extends "movies/base.html" %}
+{% load static %}
+{% block title %} {{movie.title}} {% endblock %}
+{% block head %} 
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta name="viewport" content="width=device-width, initiak-scale=1.0">
+    <meta conten-type="media-type">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/video-player.css" >
+    <link rel="stylesheet" href="/static/css/progress.css">
+    <link rel="stylesheet" href="/static/sass/plyr.css" type="text/scss" >
+
+{% endblock %}
+{% block content %}
+             
+    
+    <div class="general-film">
+        <div class="poster-film">
+                <img src="{{ movie.poster.url }}" class="poster-image" alt="" >
+        </div>
+        <div class="text-film">
+            <div>
+                Название: {{movie.title}}
+            </div>
+            <div>
+                Год выхода: {{movie.year}} г.
+            </div>
+            <div>
+                {% if movie.directors|length %}
+                Режисеры: {{movie.directors}}
+                {% endif %}
+                
+            </div>
+            <div>
+                {% if movie.actor|length %}
+                Актеры: {{movie.actor}}
+                {% endif %}
+                
+            </div>
+            <div>
+                {% if movie.genres|length %}
+                Жанр: {{movie.genres}}
+                {% endif %}
+                
+            </div>
+            <div>
+                Мировая премьера: {{movie.world_premiere}}
+            </div>
+            <div>
+                Бюджет: {{movie.budget}} $
+            </div>
+            <div>
+                Сборы в Америке: {{movie.fees_in_usa}} $
+            </div>
+            <div>
+                Сборы в мире: {{movie.fees_in_world}} $
+            </div>
+            
+            <div class="text-film">
+                Описание: {{movie.descriptions}}
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="player">
+            <video id="player" playsinline controls  src="/media/{{movie.video.file}}" class="player" ></video>
+            <!-- <div class="controls">
+                <div class="controls__play"><img class="play__btn" src="/media/images/player/play.png" alt="play"></div>
+                <div class="controls__stop"><img src="/media/images/player/stop.png" alt="stop"></div>
+                <div class="controls__progress">
+                    <input type="range" class="progress">
+                </div>
+                <div class="controls__time">00:00</div>
+                <div class="controls__fullscreen"><img class="fullscreen_btn" src="/media/images/player/full-screen.png" alt="full-screen"></div>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- <script src="/static/js/video-player.js"></script> -->
+{% endblock %}
+
+   
+
+<script src="/movies/static/js/plyr.js"></script>
+<!-- <script>
+  const player = new Plyr('#player');
+</script> -->

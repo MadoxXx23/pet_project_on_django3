@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <!-- //Meta tag Keywords -->
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- //Meta tag Keywords -->
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css">
+    <!-- Bootstrap-Core-CSS -->
+    <!--/ Style-CSS -->
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all">
+    <!--// Style-CSS -->
+    <!-- font-awesome-icons -->
+    <link href="/static/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome-icons -->
+    <!-- /Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+    {% block head %}
+    {% endblock %}
+    <!-- //Fonts -->
+</head>
+
+<body>
+
+    <div id="page" class="page"><!-- mian-content -->
+        <div class="main-banner bg bg1" id="home">
+            <!-- header -->
+            <header class="header">
+                <div class="container-fluid px-lg-5">
+                    <!-- nav -->
+                    <nav class="py-4">
+                        <div id="logo">
+                            <h1> <a href="/index.html" class="editContent" >Kino Crab Movies</a></h1>
+                        </div>
+
+                        <label for="drop" class="toggle">Menu</label>
+                        <input type="checkbox" id="drop">
+                        <ul class="menu mt-2">
+                            
+                            <li class="active"><a href="index.html">Главная</a></li>
+                            
+                            <li>
+                                <!-- First Tier Drop Down -->
+                                <!-- <label for="drop-2" class="toggle">Категории <span class="fa fa-angle-down" aria-hidden="true" ></span> </label> -->
+                                <a href="#">Категории <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                                <input type="checkbox" id="drop-2">
+                                
+                                <ul>
+                                    {% for cat in categories %}
+                                        {% if cat_selected == cat.id %}
+                                            <li class="active"><a href="/movies/{{cat.id}}">{{cat}}</a></li>
+                                        {% else %}
+                                            <li ><a href="/movies/{{cat.id}}">{{cat}}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                                
+                            </li>
+                            <li><a href="/auth.html">Вход</a></li>
+                        </ul>
+                    </nav>
+                    <!-- //nav -->
+                </div>
+            </header>
+            <!-- //header -->
+            <!--/banner-->
+            <div class="banner-info">
+                <p class="editContent" >лучший сайт на django 3</p>
+                <h3 class="mb-4 editContent">Все о кино</h3>
+            </div>
+            <!--// banner-inner -->
+
+        </div>
+        <!--//main-content-->
+        <!---->
+        <ol class="breadcrumb editContent">
+            <li class="breadcrumb-item">
+                <a href="index.html" class="editContent">Home</a>
+            </li>
+        </ol>
+        <!---->
+        <!-- banner -->
+        <section class="ab-info-main py-md-5 py-4 editContent" style="padding-left: 3rem; padding-right: 3rem;">
+            <div class="container-fluid py-md-3">
+                <div class="row">
+                    <div class="side-bar col-lg-3">
+
+                        <div class="search-bar w3layouts-newsletter">
+                            <h3 class="sear-head editContent" >Поиск фильма</h3>
+                            <form action="#" method="post" class="d-flex editContent" >
+                                <input type="search" placeholder="Введите название..." name="search" class="form-control" required="">
+                                <button class="btn1 btn" ><span class="fa fa-search" aria-hidden="true" ></span></button>
+                            </form>
+                        </div>
+                        <!--preference -->
+                        <div class="left-side my-4">
+                            <h3 class="sear-head editContent" >Жанры</h3>
+                            <ul class="w3layouts-box-list">
+                                {% for genre in genres %}
+                                
+                                <li class="editContent" >
+                                    <input type="checkbox" class="checked">
+                                    <span class="span editContent" >{{ genre.name}} </span>
+                                </li>
+                            
+                                {% endfor %}
+                                <!-- <li class="editContent" >
+                                    <input type="checkbox" class="checked">
+                                    <span class="span editContent" >Комедии</span>
+                                </li>
+                                <li class="editContent" >
+                                    <input type="checkbox" class="checked">
+                                    <span class="span editContent" >Ужасы</span>
+                                </li> --> 
+                            </ul>
+                        </div>
+                        <!-- // preference -->
+                        <!-- discounts -->
+                        <div class="left-side">
+                            <h3 class="sear-head editContent" >Год</h3>
+                            <ul class="w3layouts-box-list">
+                                <li class="editContent" >
+                                    <input type="checkbox" class="checked">
+                                    <span class="span editContent" >2022</span>
+                                </li>
+                                <li class="editContent" >
+                                    <input type="checkbox" class="checked">
+                                    <span class="span editContent" >2021</span>
+                                </li>
+                                <li class="editContent" >
+                                    <input type="checkbox" class="checked">
+                                    <span class="span editContent" >2020</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span editContent" >2019</span>
+                                </li>
+                                <li class="editContent" >
+                                    <input type="checkbox" class="checked">
+                                    <span class="span editContent" >2018</span>
+                                </li>
+                                <li class="editContent" >
+                                    <input type="checkbox" class="checked">
+                                    <span class="span editContent" >2017</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- //discounts -->
+                        <!-- reviews -->
+                        <div class="customer-rev left-side my-4">
+                            <h3 class="sear-head editContent" >Рейтинг</h3>
+                            <ul class="w3layouts-box-list">
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-star" aria-hidden="true" ></span>
+                                        <span class="fa fa-star" aria-hidden="true" ></span>
+                                        <span class="fa fa-star" aria-hidden="true" ></span>
+                                        <span class="fa fa-star" aria-hidden="true" ></span>
+                                        <span class="fa fa-star" aria-hidden="true" ></span>
+                                        <span class="editContent" >5.0</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-star" aria-hidden="true" ></span>
+                                        <span class="fa fa-star" aria-hidden="true" ></span>
+                                        <span class="fa fa-star" aria-hidden="true" ></span>
+                                        <span class="fa fa-star" aria-hidden="true" ></span>
+                                        <span class="fa fa-star-o" aria-hidden="true" ></span>
+                                        <span class="editContent" >4.0</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-star" aria-hidden="true" ></span>
+                                        <span class="fa fa-star" aria-hidden="true" ></span>
+                                        <span class="fa fa-star" aria-hidden="true" ></span>
+                                        <span class="fa fa-star-half-o" aria-hidden="true" ></span>
+                                        <span class="fa fa-star-o" aria-hidden="true" ></span>
+                                        <span class="editContent" >3.0</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-star" aria-hidden="true" ></span>
+                                        <span class="fa fa-star" aria-hidden="true" ></span>
+                                        <span class="fa fa-star" aria-hidden="true"></span>
+                                        <span class="fa fa-star-o" aria-hidden="true" ></span>
+                                        <span class="fa fa-star-o" aria-hidden="true" ></span>
+                                        <span class="editContent" >2.0</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-star" aria-hidden="true"></span>
+                                        <span class="fa fa-star" aria-hidden="true" ></span>
+                                        <span class="fa fa-star-half-o" aria-hidden="true" ></span>
+                                        <span class="fa fa-star-o" aria-hidden="true" ></span>
+                                        <span class="fa fa-star-o" aria-hidden="true" ></span>
+                                        <span class="editContent" >1.0</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- //reviews -->
+                        <!-- deals -->
+                        <div class="left-side">
+                            <h3 class="sear-head editContent">Последние добавленные</h3>
+
+                            {% for movie in last_add reversed %}
+                            <div class="special-sec1 row mt-3 editContent">
+                                <div class="img-deals col-md-4">
+                                    <img src="/media/{{ movie.poster }}" class="img-left-col" alt="">
+                                </div>
+                                <div class="img-deal1 col-md-4">
+                                    <h3 class="editContent-left">{{ movie }}</h3>
+                                    <a href="media/{{ movie.url }}" class="editContent" ></a>
+                                </div>
+                            
+                            </div>
+                            {% endfor %}
+                                                   
+                        </div>
+                        <!-- //deals -->
+
+                    </div>
+                    <!-- //product left -->
+                    <!-- product right -->
+                    <div class="left-ads-display col-lg-9">
+                        <div class="row-posters">
+                            {% block content %}
+                            {% endblock %}  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- //contact -->
+        <!-- footer -->
+        
+</body>
+</html>
